@@ -34,11 +34,33 @@ struct Vec3 {
         return std::sqrt(x*x + y*y + z*z);
     }
 
-    double dot(const Vec3& other_vec) const 
+    void normalise()
     {
-        return ( (x * other_vec.x) + (y * other_vec.y) + (z * other_vec.z) );
+        double length = this->length();
+        if (length == 0)
+        {
+            x = 0;
+            y = 0;
+            z = 0;
+        }
+        else 
+        {
+            x /= length;
+            y /= length;
+            z /= length;
+        } 
     }
 };
+
+double dot(const Vec3& vector_one, const Vec3& vector_two) 
+{
+    return ( (vector_one.x * vector_two.x) + (vector_one.y * vector_two.y) + (vector_one.z * vector_two.z) );
+}
+
+Vec3 reflect(const Vec3& v, const Vec3& normal)
+{
+    return v - normal * 2.0 * dot(v, normal);
+}
 
 #endif
 

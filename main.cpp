@@ -3,19 +3,34 @@
 
 int main()
 {
-    int row = 256;
-    int col = 256;
+    Vec3 vector(5, 5, 2);
+    Vec3* pointer = &vector;
 
-    std::cout << "P3\n" << col << " " << row << "\n" << "255\n"; 
+    std::cout << "Pointer: " << pointer << "\n";
+    std::cout << "Pointer.x: " << pointer->x << "\n";
+
+    pointer->x = 1;
+
+    std::cout << "New pointer.x: " << pointer->x << "\n";
+
+    std::cout << "Before normalisation: " << vector.x << "\n";
+    (*pointer).normalise();
+    std::cout << "proving change:" << vector.x << "\n";
+
+
+    // int row = 256;
+    // int col = 256;
+
+    // std::cout << "P3\n" << col << " " << row << "\n" << "255\n"; 
     
-    for(int x = 0; x < row; x++)
-    {
-        for(int i = 0; i < col; i ++)
-        {
-            Vec3 vect(i, x, 0);
-            std::cout << vect.x << " " << vect.y << " " << vect.z << "\n";
-        }
-    }
+    // for(int x = 0; x < row; x++)
+    // {
+    //     for(int i = 0; i < col; i ++)
+    //     {
+    //         Vec3 vect(i, x, 0);
+    //         std::cout << vect.x << " " << vect.y << " " << vect.z << "\n";
+    //     }
+    // }
     
     return 0;
 }
