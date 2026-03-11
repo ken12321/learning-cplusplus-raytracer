@@ -1,73 +1,23 @@
 #include <iostream>
+#include <memory>
+#include <vector>
 #include "vec.h"
 #include "ray.h"
-#include "heavyray.h"
+#include "sphere.h"
 
 int main()
 {
-    Vec3 vector(5, 5, 2);
-    Vec3 vectortwo(2, 2, 4);
-    std::cout << "Pre scoped\n";
+    std::vector<std::unique_ptr<Sphere>> list_of_spheres;
 
-    HeavyRay ray(&vector, vectortwo);
-    HeavyRay ray2 = ray;
-    //Ray ray_two(vector, vectortwo);
+    list_of_spheres.push_back(std::make_unique<Sphere>(Vec3(6,4,7), 1.5));
+    list_of_spheres.push_back(std::make_unique<Sphere>(Vec3(5,5,6), 2.5));
+    list_of_spheres.push_back(std::make_unique<Sphere>(Vec3(3,3,3), 3.0));
 
-    std::cout << "Post scoped\n";
+    for (size_t i = 0; i < list_of_spheres.size(); i++)
+    {
+        std::cout << "Sphere " << i << " Center: " << list_of_spheres[i]->center.x << list_of_spheres[i]->center.y << list_of_spheres[i]->center.z <<"\n";
+        std::cout << "Sphere " << i << " Radius: " << list_of_spheres[i]->radius << "\n";
+    }
 
-
-    // int row = 256;
-    // int col = 256;
-
-    // std::cout << "P3\n" << col << " " << row << "\n" << "255\n"; 
-    
-    // for(int x = 0; x < row; x++)
-    // {
-    //     for(int i = 0; i < col; i ++)
-    //     {
-    //         Vec3 vect(i, x, 0);
-    //         std::cout << vect.x << " " << vect.y << " " << vect.z << "\n";
-    //     }
-    // }
-    
     return 0;
 }
-
-/*
-
-  Module 2: Memory Model & Structs                                                                                                                                                
-                  
-  The Big Idea                                                                                                                                                                    
-                                                                                                                                                                                  
-  In C# and Python, you don't think much about where your data lives — the runtime handles that. 
-  In C++, you decide whether data lives on the stack or the heap, and that choice  
-  has real consequences for performance, lifetime, and safety.                                                                                                                    
-                                                                                                                                                                                  
-  We'll start with structs and the stack, since your raytracer needs a core building block:
-  a 3D vector (used for points, colors, directions — everything).
-
-  C# Comparison
-
-  In C#, struct vs class controls value-type vs reference-type semantics.
-  In C++, struct and class are almost identical — the only difference is default access (public vs
-  private). By convention, struct is used for simple data aggregates, class for things with complex behavior. But the compiler doesn't care.
-
-  The bigger difference: in C++, both structs and classes live on the stack by default.
-  Nothing goes to the heap unless you explicitly ask for it.
-
-  Your Assignment
-
-  Create a Vec3 struct in a new file called vec3.h that:
-
-  1. Has three double members: x, y, z
-  2. Has a constructor (what should the default values be for a vector?)
-  3. Overloads these operators: +, -, * (scalar multiply), and unary -
-  4. Has a length() method and a dot() method
-  5. Update main.cpp to #include "vec3.h" and use Vec3 for your color output instead of raw ints
-
-  A few things to think about as you write it:
-  - What does const mean on a method, and which methods here should be const?
-  - Should operators return by value or by reference?
-  - What's sizeof(Vec3)? Try printing it — does the answer surprise you?
-  
-*/

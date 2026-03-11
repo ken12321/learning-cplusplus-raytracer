@@ -11,7 +11,6 @@ class Ray {
         Ray(const Vec3& _o, const Vec3& _d) : _origin(_o), _direction(_d) 
         {
             _direction.normalise();
-            std::cout << "Ray created\n";
         }
 
         const Vec3& getOrigin() const
@@ -28,11 +27,6 @@ class Ray {
         {
             return _origin + _direction * t;
         }
-
-    ~Ray() 
-    {
-        std::cout << "Ray destroyed\n";
-    }
 };
 
 #endif
