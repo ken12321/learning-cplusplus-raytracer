@@ -52,7 +52,12 @@ struct Vec3
             z /= length;
         } 
     }
-};
+
+    Vec3(Vec3&&) = default;
+    Vec3(const Vec3&) = default;
+    Vec3& operator=(Vec3&&) = default;
+    Vec3& operator=(const Vec3&) = default;
+    };
 
 using Vec3d = Vec3<double>;
 
@@ -69,3 +74,18 @@ Vec3<T> reflect(const Vec3<T>& v, const Vec3<T>& normal)
 }
 
 #endif
+
+
+
+// Module 8: Move Semantics
+
+//   Your Assignment
+
+//   1. Add a move constructor to Vec3: Vec3(Vec3&& other) — the && means "rvalue reference" (a temporary or something being moved from)
+//   2. Add a print inside it so you can see when moves happen
+//   3. In main.cpp, try: Vec3d v1(1,2,3); Vec3d v2 = std::move(v1); — this should trigger your move constructor
+//   4. Print v1's values after the move. What do you expect to see?
+
+//   You'll need #include <utility> for std::move.
+
+//   Think about: For Vec3 (three doubles on the stack), is moving actually faster than copying? When does move semantics really pay off?
