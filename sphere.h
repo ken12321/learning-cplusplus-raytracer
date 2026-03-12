@@ -7,10 +7,10 @@
 
 struct Sphere : public Hittable
 {
-    Vec3 center;
+    Vec3d center;
     double radius;
 
-    Sphere(Vec3 c, double r) : center(c), radius(r) {}
+    Sphere(Vec3d c, double r) : center(c), radius(r) {}
 
     bool hit(const Ray& ray) const override
     {

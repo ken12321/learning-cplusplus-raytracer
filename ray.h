@@ -6,24 +6,24 @@
 
 class Ray {
     private:
-        Vec3 _origin, _direction;
+        Vec3d _origin, _direction;
     public:
-        Ray(const Vec3& _o, const Vec3& _d) : _origin(_o), _direction(_d) 
+        Ray(const Vec3d& _o, const Vec3d& _d) : _origin(_o), _direction(_d) 
         {
             _direction.normalise();
         }
 
-        const Vec3& getOrigin() const
+        const Vec3d& getOrigin() const
         {
             return _origin;
         }
 
-        const Vec3& getDirection() const
+        const Vec3d& getDirection() const
         {
             return _direction;
         }
 
-        Vec3 at (double t) const
+        Vec3d at (double t) const
         {
             return _origin + _direction * t;
         }
