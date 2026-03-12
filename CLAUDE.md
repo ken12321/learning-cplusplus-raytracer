@@ -81,20 +81,20 @@ g++ -std=c++17 -Wall -Wextra -o raytracer main.cpp && ./raytracer > image.ppm
 | 4 — Classes & destructors | Complete |
 | 5 — RAII & smart pointers | Complete |
 | 6 — Polymorphism | Complete |
-| 7 — Templates | In progress |
-| 8 — Move semantics | Not started |
-| 9 — STL & modern C++ | Not started |
+| 7 — Templates | Complete |
+| 8 — Move semantics | Complete |
+| 9 — STL & modern C++ | In progress |
 
-### Current Task (Module 7)
+### Current Task (Module 9)
 
-Convert `Vec3` to a template class `Vec3<T>`, add a `using Vec3d = Vec3<double>` alias, and make `dot()` and `reflect()` template functions.
+Add `HitRecord` struct, change `Sphere::hit()` to return `std::optional<HitRecord>`, use `std::optional` for hit/miss.
 
 ### Code Structure
-- `vec.h` — Vec3 struct with operator overloading, normalise, reflect, dot
+- `vec.h` — Vec3 template struct with operator overloading, normalise, reflect, dot, `Vec3d` alias, Rule of Five = default
 - `ray.h` — Ray class with private members and const getters
 - `sphere.h` — Sphere inherits from Hittable, implements hit()
 - `hittable.h` — Abstract base class with pure virtual hit() and virtual destructor
-- `main.cpp` — vector<unique_ptr<Hittable>>, iterates and calls hit()
+- `main.cpp` — Move semantics demo (to be updated for Module 9)
 
 ### Concepts Confirmed
 - unique_ptr copy constructor is explicitly deleted (= delete)
@@ -102,3 +102,8 @@ Convert `Vec3` to a template class `Vec3<T>`, add a `using Vec3d = Vec3<double>`
 - virtual destructor on base class required when deleting through base pointer
 - override keyword catches signature mismatches at compile time
 - Most vexing parse: Ray ray() declares a function, not a variable
+- C++ templates resolved at compile time (separate code per type), C# generics at runtime
+- `using` type alias preferred over `typedef` in modern C++
+- Move semantics only matter for heap-owning types; Vec3 move == copy
+- Rule of Five: destructor, copy ctor, copy assign, move ctor, move assign
+- Defining a move constructor deletes the implicit copy constructor
