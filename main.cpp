@@ -4,20 +4,21 @@
 #include "vec.h"
 #include "ray.h"
 #include "sphere.h"
+#include "hittable.h"
 
 int main()
 {
-    std::vector<std::unique_ptr<Sphere>> list_of_spheres;
+    std::vector<std::unique_ptr<Hittable>> list_of_hittables;
+    
+    list_of_hittables.push_back(std::make_unique<Sphere>(Vec3(1,2,3), 5.0));
+    list_of_hittables.push_back(std::make_unique<Sphere>(Vec3(3,4,5), 3.2));
 
-    list_of_spheres.push_back(std::make_unique<Sphere>(Vec3(6,4,7), 1.5));
-    list_of_spheres.push_back(std::make_unique<Sphere>(Vec3(5,5,6), 2.5));
-    list_of_spheres.push_back(std::make_unique<Sphere>(Vec3(3,3,3), 3.0));
-
-    for (size_t i = 0; i < list_of_spheres.size(); i++)
+    Ray ray(Vec3(1,2,3), Vec3(3,2,1));
+    for(size_t i = 0; i < list_of_hittables.size(); i++)
     {
-        std::cout << "Sphere " << i << " Center: " << list_of_spheres[i]->center.x << list_of_spheres[i]->center.y << list_of_spheres[i]->center.z <<"\n";
-        std::cout << "Sphere " << i << " Radius: " << list_of_spheres[i]->radius << "\n";
+        list_of_hittables[i]->hit(ray);
     }
+
 
     return 0;
 }
