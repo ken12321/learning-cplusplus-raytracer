@@ -11,6 +11,8 @@ the memory model: stack vs heap, ownership, RAII and move semantics.
 The curriculum was taught by an AI tutor (Claude). It introduced each concept, set the
 coding task and critiqued my implementation, but I wrote the code myself.
 
+This is also some of my first experience using Claude Code, if I were to do the same my CLAUDE.md would look a lot different.
+
 ## Output
 
 ![render](converted_image.png)
