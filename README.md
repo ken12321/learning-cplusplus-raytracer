@@ -4,6 +4,8 @@ A small raytracer written from scratch in C++17 as a hands-on way to learn the l
 It renders spheres shaded by their surface normals and writes the result as a plain-text
 PPM image, with no external libraries.
 
+No external libraries aside from std were key - I wanted a hands-on experience with as little help as possible from external code and libraries.
+
 The project was built step by step alongside a structured curriculum. Each module adds
 a C++ concept to the codebase, coming from a C# / Python background, with a focus on
 the memory model: stack vs heap, ownership, RAII and move semantics.
